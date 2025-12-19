@@ -1,6 +1,7 @@
 /**
  * AURA JOURNAL - ROUTER CONFIGURATION
  * This file handles all the navigation routes for the application.
+ * Updated to support GitHub Pages sub-directory hosting.
  */
 
  import { createRouter, createWebHistory } from 'vue-router'
@@ -38,9 +39,11 @@
  ]
  
  // --- ROUTER INSTANCE ---
- // Create the router using Web History mode for clean URLs
+ // Create the router using Web History mode
+ // Added 'import.meta.env.BASE_URL' to ensure the app works correctly 
+ // when hosted on GitHub Pages sub-directories like /AURA-Journal/
  const router = createRouter({
-   history: createWebHistory(),
+   history: createWebHistory(import.meta.env.BASE_URL),
    routes
  })
  
