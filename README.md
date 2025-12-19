@@ -1,5 +1,32 @@
-# Vue 3 + Vite
+# AURA - Gratitude & Mindfulness Sanctuary 🌿
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+**AURA** is a premium, minimalist web application designed to foster mindfulness and daily gratitude. Built with **Vue.js 3** and **Vite**, it offers a serene digital space for users to record their thoughts, gain insights, and find peace in a fast-paced world.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+---
+
+## ✨ Key Features
+
+- **The Sanctuary:** A tranquil home space for daily reflection and focus.
+- **The Journal:** A clean, focused interface for writing daily gratitude entries.
+- **Insights:** Visual feedback and mindfulness analytics to track your emotional journey.
+- **The Jar:** A unique virtual space to store and revisit your happiest moments.
+- **Dual Theme Support:** Fully optimized Light and Dark modes with premium glassmorphism effects.
+- **Responsive Design:** Flawless experience across Mobile, Tablet, and Desktop devices.
+- **Modern Tech Stack:** Built using Vue 3 (Composition API), Vue Router, and CSS Variables.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
+- [NPM](https://www.npmjs.com/) (Installed automatically with Node)
+
+### Installation
+
+1. Navigate to the project folder.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```

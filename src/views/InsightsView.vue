@@ -1,4 +1,9 @@
 <script setup>
+/**
+ * INSIGHTS VIEW - THE REFLECTION
+ * Visualizes gratitude data through dynamic floating orbs, progress bars, 
+ * and an achievement-based badge system.
+ */
 import { useGratitudeStore } from '../stores/gratitudeStore'
 const store = useGratitudeStore()
 </script>
@@ -101,6 +106,7 @@ const store = useGratitudeStore()
 </template>
 
 <style scoped>
+/* --- BASE VIEW STYLES --- */
 .insights-view { padding-bottom: 5rem; min-height: 80vh; padding-top: 1rem; }
 .insights-header { text-align: center; margin-bottom: 3rem; }
 .subtitle { color: var(--text-muted); font-style: italic; opacity: 0.8; font-size: 0.9rem; }
@@ -110,7 +116,7 @@ const store = useGratitudeStore()
   color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-weight: 600;
 }
 
-/* Orbs Styling */
+/* --- FLOATING ORBS STYLING --- */
 .orbs-container {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.5rem; justify-items: center; align-items: center;
@@ -119,15 +125,22 @@ const store = useGratitudeStore()
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.mood-orb-wrapper { display: flex; flex-direction: column; align-items: center; animation: float 6s ease-in-out infinite; }
-.mood-orb { width: 80px; height: 80px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1a1a1a; position: relative; border: 1px solid rgba(255,255,255,0.4); }
+.mood-orb-wrapper { 
+  display: flex; flex-direction: column; align-items: center; 
+  animation: float 6s ease-in-out infinite; 
+}
+.mood-orb { 
+  width: 80px; height: 80px; border-radius: 50%; 
+  display: flex; flex-direction: column; align-items: center; justify-content: center; 
+  color: #1a1a1a; position: relative; border: 1px solid rgba(255,255,255,0.4); 
+}
 .orb-icon { font-size: 1.5rem; margin-bottom: 2px; }
 .orb-percent { font-size: 0.75rem; font-weight: 900; }
 .orb-label { margin-top: 1rem; font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text); font-weight: 600; }
 
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-/* Badges Styling - الفخامة هنا */
+/* --- BADGES STYLING: Premium UI --- */
 .badges-container { display: flex; justify-content: center; gap: 2rem; margin-bottom: 5rem; flex-wrap: wrap; }
 .badge-item { text-align: center; position: relative; width: 100px; }
 
@@ -141,13 +154,10 @@ const store = useGratitudeStore()
 }
 
 .badge-icon { font-size: 2rem; z-index: 2; }
-
-/* تأثير النجمة الخاصة */
 .star-icon { filter: drop-shadow(0 0 8px var(--accent)); color: #ffd700; }
-
 .badge-name { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text); letter-spacing: 1px; }
 
-/* تأثير الهالة وراء النجمة */
+/* Special Halo animation for the Radiant Badge */
 .radiant-halo {
   position: absolute; width: 100%; height: 100%;
   border-radius: 24px;
@@ -157,11 +167,11 @@ const store = useGratitudeStore()
 
 @keyframes rotate-halo { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* التكتيك لجعله مقفولاً بشكل شيك */
+/* Locked Badge State */
 .locked .badge-icon-box { filter: grayscale(1); opacity: 0.3; border: 1px dashed rgba(255,255,255,0.2); }
 .locked .badge-name { opacity: 0.5; }
 
-/* توهج الأوسمة المفتوحة */
+/* Pulsating Glow Effect for unlocked badges */
 .badge-glow {
   position: absolute; inset: -5px;
   background: var(--accent); border-radius: 28px;
@@ -171,7 +181,7 @@ const store = useGratitudeStore()
 
 @keyframes pulse-badge { 0%, 100% { opacity: 0.1; transform: scale(0.95); } 50% { opacity: 0.3; transform: scale(1.05); } }
 
-/* Stats Grid & Progress Bars */
+/* --- STATISTICS & PROGRESS BARS --- */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .stat-main-card { background: var(--primary); color: white; padding: 2.5rem; border-radius: 35px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 .stat-main-card .val { font-size: 3.5rem; font-family: 'Cormorant Garamond', serif; margin: 0.5rem 0; }
@@ -183,7 +193,7 @@ const store = useGratitudeStore()
 .progress-bar-container { height: 8px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; position: relative; }
 .progress-fill { height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 10px; }
 
-/* Responsive Media Queries */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
   .stats-grid { grid-template-columns: 1fr; }
   .orbs-container { grid-template-columns: repeat(2, 1fr); padding: 1.5rem 1rem; }
@@ -191,10 +201,5 @@ const store = useGratitudeStore()
   .badge-item { width: 85px; }
   .badge-icon-box { width: 60px; height: 60px; border-radius: 18px; }
   .badge-icon { font-size: 1.6rem; }
-}
-
-@media (max-width: 400px) {
-  .orbs-container { grid-template-columns: repeat(2, 1fr); }
-  .mood-orb { width: 70px; height: 70px; }
 }
 </style>

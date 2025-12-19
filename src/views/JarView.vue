@@ -1,4 +1,9 @@
 <script setup>
+/**
+ * JAR VIEW - THE VESSEL OF LIGHT
+ * A poetic visualization where each gratitude entry is transformed into 
+ * a floating spark inside a glass sanctuary.
+ */
 import { useGratitudeStore } from '../stores/gratitudeStore'
 const store = useGratitudeStore()
 </script>
@@ -40,6 +45,7 @@ const store = useGratitudeStore()
       <div class="jar-stats">
         <h3 class="count-display">{{ store.totalMoments }}</h3>
         <p class="label">Sparks Collected</p>
+        
         <p class="goal-text" v-if="store.totalMoments < 30">
           Only {{ 30 - store.totalMoments }} more to fill your monthly sanctuary.
         </p>
@@ -52,6 +58,7 @@ const store = useGratitudeStore()
 </template>
 
 <style scoped>
+/* --- LAYOUT --- */
 .jar-page { min-height: 90vh; display: flex; align-items: center; padding-top: 2rem; }
 .jar-header { text-align: center; margin-bottom: 3rem; }
 
@@ -63,7 +70,7 @@ const store = useGratitudeStore()
   margin: 4rem 0;
 }
 
-/* تصميم المرطبان الفخم */
+/* --- PREMIUM GLASS JAR DESIGN --- */
 .glass-jar {
   width: 220px; height: 320px;
   background: rgba(255, 255, 255, 0.03);
@@ -87,7 +94,7 @@ const store = useGratitudeStore()
   z-index: 2;
 }
 
-/* النجوم المضيئة */
+/* --- GLOWING SPARKS ANIMATION --- */
 .stars-area { position: absolute; inset: 0; }
 .glow-spark {
   position: absolute;
@@ -103,7 +110,7 @@ const store = useGratitudeStore()
   50% { transform: translateY(-15px) scale(1.3); opacity: 1; }
 }
 
-/* لمعة الزجاج */
+/* --- VISUAL POLISH --- */
 .jar-reflection-main {
   position: absolute; left: 15%; top: 10%;
   width: 8px; height: 70%;
@@ -119,8 +126,15 @@ const store = useGratitudeStore()
   border-radius: 50%;
 }
 
+/* --- STATS DISPLAY --- */
 .jar-stats { text-align: center; margin-top: 2rem; }
-.count-display { font-size: 4rem; font-family: 'Cormorant Garamond', serif; color: var(--accent); }
+.count-display { 
+  font-size: 4rem; 
+  font-family: 'Cormorant Garamond', serif; 
+  color: var(--accent); 
+  text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
+}
+.label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; color: var(--text-muted); }
 .goal-text { font-style: italic; color: var(--text-muted); margin-top: 1rem; }
 .completed { color: #d4af37; font-weight: bold; }
 </style>

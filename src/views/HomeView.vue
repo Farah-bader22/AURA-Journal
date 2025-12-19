@@ -1,4 +1,9 @@
 <script setup>
+/**
+ * HOME VIEW - THE SANCTUARY
+ * This is the main landing page where users are welcomed, 
+ * view inspirational quotes, and record their daily gratitude.
+ */
 import { ref, onMounted } from 'vue'
 import { useGratitudeStore } from '../stores/gratitudeStore'
 
@@ -8,20 +13,32 @@ const tempName = ref('')
 const selectedCategory = ref('Mindfulness')
 const selectedMood = ref('✨')
 
+// --- INITIALIZATION ---
 onMounted(() => {
+  // Load a fresh quote every time the sanctuary is visited
   store.getRandomQuote()
 })
 
+// --- LOGIC HANDLERS ---
+/**
+ * Saves the user's name to the global store and LocalStorage.
+ */
 const handleNameSave = () => {
   if (tempName.value.trim()) {
     store.setUserName(tempName.value.trim())
   }
 }
 
+/**
+ * Validates and records a new gratitude entry.
+ * Includes a visual feedback on the button after successful capture.
+ */
 const saveEntry = () => {
   if (newText.value.trim()) {
     store.add(newText.value, selectedCategory.value, selectedMood.value)
     newText.value = ''
+    
+    // Visual feedback for the user
     const btn = document.querySelector('.action-btn')
     if(btn) {
       btn.textContent = 'Captured ✨'
@@ -127,9 +144,10 @@ const saveEntry = () => {
 </template>
 
 <style scoped>
+/* --- LAYOUT STYLES --- */
 .home-view { padding: 2rem 0 6rem; position: relative; min-height: 100vh; }
 
-/* Name Overlay Styling */
+/* Welcome Overlay Styling */
 .name-overlay {
   position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -152,7 +170,7 @@ const saveEntry = () => {
 }
 .content-blur { filter: blur(10px); pointer-events: none; transition: filter 0.8s ease; }
 
-/* Hero & Quote Section */
+/* Hero & Quote Section Styling */
 .hero-section { position: relative; padding: 4rem 0; text-align: center; }
 .quote-glow { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -173,7 +191,7 @@ const saveEntry = () => {
   margin: 3rem auto; 
 }
 
-/* Creator Card */
+/* Creator Card Styling */
 .creator-card {
   background: var(--card-bg); padding: 3rem; border-radius: 40px;
   border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: var(--shadow-elegant);
@@ -183,6 +201,7 @@ const saveEntry = () => {
 .serif { font-size: 2rem; color: var(--primary); }
 .subtitle-small { color: var(--text-muted); font-size: 0.9rem; }
 
+/* Interactive Mood Selector */
 .mood-selector-fancy { display: flex; gap: 1.2rem; }
 .mood-dot { display: flex; flex-direction: column; align-items: center; cursor: pointer; opacity: 0.3; transition: 0.3s; }
 .mood-dot.active { opacity: 1; transform: scale(1.2); }
@@ -200,7 +219,7 @@ const saveEntry = () => {
 .minimal-select { border: none; background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; color: var(--accent); font-weight: 600; cursor: pointer; }
 .action-btn { background: var(--primary); color: white; border: none; padding: 1.2rem 3rem; border-radius: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; }
 
-/* Recent Peek */
+/* Recent Feed Styling */
 .recent-peek { text-align: center; margin-top: 2rem; }
 .peek-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0; }
 .peek-card { background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
@@ -208,7 +227,7 @@ const saveEntry = () => {
 .peek-date { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
 .view-all-button { text-decoration: none; color: var(--accent); font-size: 0.8rem; font-weight: 700; border-bottom: 1px solid var(--accent); padding-bottom: 4px; }
 
-/* Animations & Responsive */
+/* --- ANIMATIONS & RESPONSIVE --- */
 .blur-fade-leave-active { transition: all 0.8s ease; }
 .blur-fade-leave-to { opacity: 0; transform: scale(1.05); filter: blur(20px); }
 

@@ -1,11 +1,16 @@
-/* Importing High-End Typography */
+/* * AURA GRATITUDE - GLOBAL STYLES
+ * High-end typography, Color management (Light/Dark), and UI normalization.
+ */
+
+/* --- TYPOGRAPHY --- */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;600&display=swap');
 
+/* --- COLOR VARIABLES (LIGHT MODE) --- */
 :root {
-  /* Light Mode Palette */
   --primary: #4a5d4e;       /* Deep Sage */
   --accent: #d4af37;        /* Soft Gold */
   --bg: #faf9f6;           /* Alabaster White */
+  --bg-rgb: 250, 249, 246; /* Necessary for RGBA backgrounds */
   --card-bg: #ffffff;
   --text: #2c2c2c;
   --text-muted: #7d7d7d;
@@ -14,11 +19,12 @@
   --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* --- COLOR VARIABLES (DARK MODE) --- */
 [data-theme='dark'] {
-  /* Night Mode Palette */
   --primary: #a3b899;      
   --accent: #e6c27a;       
   --bg: #1a1c1a;           /* Deep Forest */
+  --bg-rgb: 26, 28, 26;
   --card-bg: #242624;      
   --text: #e0e0e0;
   --text-muted: #a0a0a0;
@@ -26,12 +32,14 @@
   --shadow-elegant: 0 20px 40px rgba(0,0,0,0.4);
 }
 
+/* --- GLOBAL RESET --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* --- BASE STYLES --- */
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--bg);
@@ -39,19 +47,47 @@ body {
   line-height: 1.6;
   transition: background-color 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; /* Better text rendering */
 }
 
-h1, h2, .serif {
+/* Header & Serif Typography */
+h1, h2, h3, .brand-name, .serif {
   font-family: 'Cormorant Garamond', serif;
 }
 
+/* Layout Container */
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Elegant Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+/* --- UI COMPONENTS --- */
+
+/* Utility: Fade-in animation for pages */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Elegant Scrollbar */
+::-webkit-scrollbar { 
+  width: 6px; 
+}
+::-webkit-scrollbar-track { 
+  background: var(--bg); 
+}
+::-webkit-scrollbar-thumb { 
+  background: var(--accent); 
+  border-radius: 10px; 
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
